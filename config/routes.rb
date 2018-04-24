@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   # GET "/account_activations/:id/edit"
   # params[:id] <==== 有効化トークン
   # Controller: params[:id]
+  resources :microposts,          only: [:create, :destroy]
 
 end
