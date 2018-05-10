@@ -2,11 +2,12 @@ class StaticPagesController < ApplicationController
   def home
     if logged_in?
       @micropost  = current_user.microposts.build
-      if params[:search]
-        @feed_items = Micropost.where("microposts.content LIKE :search", search: "%#{params[:search]}%").paginate(page: params[:page])
-      else
-        @feed_items = current_user.feed.paginate(page: params[:page])
-      end
+      # if params[:search]
+      #   @feed_items = Micropost.where("microposts.content LIKE :search", search: "%#{params[:search]}%").paginate(page: params[:page])
+      # else
+      #   @feed_items = current_user.feed.paginate(page: params[:page])
+      # end
+      @feed_items = Micropost.search(params[:search]).paginate(page: params[:page])
     end
   end
 
